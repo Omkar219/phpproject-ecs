@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir -p -m 0400 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN rm -rf /var/www/html/* && mkdir -p /var/www/html 
-ADD src /var/www/html
-
+copy src/ /var/www/html
+RUN chmod -R a+r /var/www/html/
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
@@ -30,4 +30,3 @@ RUN echo "DirectoryIndex index.php" >> .htaccess
 
 # Expose apache.
 EXPOSE 80
-CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
