@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
    
 
 RUN mkdir -p -m 0400 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-RUN rm -rf /var/www/html/* && mkdir -p /var/www/html && ln -s /usr/sbin/httpd /usr/sbin/apache2
+RUN rm -rf /var/www/html/* && mkdir -p /var/www/html 
 ADD src /var/www/html
 
 ENV APACHE_RUN_USER www-data
