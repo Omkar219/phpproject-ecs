@@ -76,6 +76,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: DeploymentContainer
-        cluster: default
+        service: phpservice
+        cluster: php74apache
         wait-for-service-stability: true

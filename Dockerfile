@@ -5,8 +5,11 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
         openssh-client \
         git
+    && ln -s /usr/sbin/httpd /usr/sbin/apache2
 
 RUN mkdir -p -m 0400 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN rm -rf /var/www/html/* && mkdir -p /var/www/html
+ADD src /var/www/html
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -19,14 +22,14 @@ RUN a2enmod rewrite
 
 # https://github.com/tandfgroup/routledgesw.git
 
-#RUN git clone https://AshwiniN-Shekar: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@github.com/tandfgroup/routledgesw.git /var/www/html/
 
 WORKDIR /var/www/html/
 RUN touch .htaccess
-RUN echo "DirectoryIndex default.php" >> .htaccess
+RUN echo "DirectoryIndex index.php" >> .htaccess
 
 #ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 #ADD dir.conf /etc/apache2/mods-enabled/dir.conf
 
 # Expose apache.
 EXPOSE 80
+CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
