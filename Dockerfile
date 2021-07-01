@@ -38,15 +38,16 @@ RUN echo "DirectoryIndex index.php" >> .htaccess
 
 #ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 #ADD dir.conf /etc/apache2/mods-enabled/dir.conf
-
-# Expose apache.
-EXPOSE 80
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+##
 
 ######
 COPY start.sh /usr/local/bin/
 RUN chmod 777 /usr/local/bin/start.sh
 RUN ln -s usr/local/bin/start.sh / # backwards compat
-ENTRYPOINT ["/usr/local/bin/start.sh"]
+CMD ["./usr/local/bin/start.sh"]
+# Expose apache.
+EXPOSE 80
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
 # Run the command on container startup
