@@ -1,4 +1,4 @@
-FROM nginx:ubuntu
+FROM ubuntu/nginx:latest
 
 
 # Remove the default Nginx configuration file
