@@ -47,5 +47,5 @@ CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 ######
 COPY start.sh /usr/local/bin/
 RUN ln -s usr/local/bin/start.sh / # backwards compat
-ENTRYPOINT ["start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
 # Run the command on container startup
