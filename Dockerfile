@@ -25,7 +25,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 RUN a2enmod rewrite
-
+CMD cron && tail -f /var/log/cron.log
 # Copy this repo into place.
 
 # https://github.com/tandfgroup/routledgesw.git
@@ -43,5 +43,9 @@ RUN echo "DirectoryIndex index.php" >> .htaccess
 EXPOSE 80
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+######
+COPY start.sh /usr/local/bin/
+RUN ln -s usr/local/bin/start.sh / # backwards compat
+ENTRYPOINT ["start.sh"]
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
