@@ -14,7 +14,7 @@ EXPOSE 80
 
 # Set the default command to execute
 # when creating a new container
-RUN service nginx start
+CMD ["nginx", "-g", "daemon off;"]
 
 ######
 COPY start.sh /usr/local/bin/
