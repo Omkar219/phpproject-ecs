@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "608574942690.dkr.ecr.us-east-1.amazonaws.com/docker321storage:php7.4apache",
+      "image": "879260341634.dkr.ecr.us-east-2.amazonaws.com/docker321storage",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -53,9 +53,10 @@
   "memory": "128",
   "taskRoleArn": null,
   "compatibilities": [
+    "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:608574942690:task-definition/DeploymentContainer:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:879260341634:task-definition/DeploymentContainer:1",
   "family": "DeploymentContainer",
   "requiresAttributes": [
     {
