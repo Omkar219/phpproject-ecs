@@ -14,8 +14,8 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY start.sh /usr/local/bin/
 RUN chmod 777 /usr/local/bin/start.sh
 RUN ln -s usr/local/bin/start.sh / # backwards compat
-ENTRYPOINT ["/usr/local/bin/start.sh"]
-
+#ENTRYPOINT ["/usr/local/bin/start.sh"]
+RUN echo " http://172.31.45.40:51678/v1/metadata " >> /usr/share/nginx/html/index.html
 ## starting nginx 
 CMD ["nginx", "-g", "daemon off;"]
 
