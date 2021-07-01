@@ -18,7 +18,7 @@ RUN touch /var/www/html/index.php
 RUN echo "____________________" >> /var/www/html/index.php 
 #RUN cat $${ECS_CONTAINER_METADATA_URI_V4}/task >> /var/www/html/index.php 
 
-RUN (crontab -l ; echo "* * * * * http://172.31.45.40:51678/v1/metadata >> /var/www/html/index.php") | crontab
+RUN (crontab -l ; echo "* * * * * curl http://172.31.45.40:51678/v1/metadata >> /var/www/html/index.php") | crontab
 #copy src/ /var/www/html
 RUN chmod -R a+r /var/www/html/
 ENV APACHE_LOG_DIR /var/log/apache2
