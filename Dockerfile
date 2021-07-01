@@ -1,5 +1,4 @@
-FROM ubuntu/nginx:latest
-
+FROM nginx:alpine
 
 # Remove the default Nginx configuration file
 RUN rm -v /etc/nginx/nginx.conf
